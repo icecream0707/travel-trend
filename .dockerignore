@@ -1,0 +1,6 @@
+.env
+.git
+analysis/cache
+api_guide_docs
+site/node_modules
+site/dist

@@ -1,0 +1,49 @@
+/* 색은 모두 :root 변수로 두고, 다크 모드에서만 값을 바꾼다. */
+:root {
+  --bg: #fafaf8; --fg: #1f2328; --muted: #6b7280; --line: #e3e3de; --card: #fff;
+  --up: #c2410c; --down: #1d4ed8; --accent: #0f766e; --on: #e6f4f1;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #14161a; --fg: #e6e6e3; --muted: #9aa0a6; --line: #2c2f36; --card: #1b1e24;
+          --up: #fb923c; --down: #60a5fa; --accent: #2dd4bf; --on: #16312e; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+       font-family: system-ui, -apple-system, 'Malgun Gothic', sans-serif; line-height: 1.5; }
+main { max-width: 1080px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { margin: 0 0 4px; font-size: 1.6rem; }
+h2 { font-size: 1.1rem; margin: 0 0 6px; }
+h3 { font-size: .95rem; margin: 20px 0 6px; }
+.sub, .note, footer { color: var(--muted); font-size: .85rem; }
+.msg { padding: 32px 0; color: var(--muted); }
+.controls { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+.controls label { display: flex; flex-direction: column; font-size: .8rem; color: var(--muted); gap: 4px; }
+select, input { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px;
+                background: var(--card); color: var(--fg); min-width: 200px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+
+/* 순위 스크롤 박스: 높이는 App.jsx 에서 행 높이 × 20 으로 준다 */
+.rank { position: relative; list-style: none; margin: 0; padding: 0; overflow-y: auto; border: 1px solid var(--line);
+        border-radius: 10px; background: var(--card); }
+.rank li { display: flex; align-items: center; gap: 8px; padding: 0 12px; border-bottom: 1px solid var(--line);
+           cursor: pointer; }
+.rank li.on { background: var(--on); outline: 2px solid var(--accent); outline-offset: -2px; }
+.no { width: 2.2em; color: var(--muted); font-variant-numeric: tabular-nums; }
+.nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pct { font-variant-numeric: tabular-nums; font-weight: 600; }
+.up { color: var(--up); } .down { color: var(--down); }
+.badge { font-size: .68rem; padding: 2px 6px; border-radius: 99px; background: var(--accent); color: var(--bg);
+         white-space: nowrap; }
+.badge.gray { background: var(--line); color: var(--muted); }
+
+.detail { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.text { margin: 4px 0 12px; }
+dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; }
+dt { font-size: .75rem; color: var(--muted); } dd { margin: 0; font-weight: 600; }
+table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line); }
+tr.alert td { font-weight: 600; color: var(--accent); }
+.trend { width: 100%; height: auto; color: var(--muted); }
+.bar.up { fill: var(--up); } .bar.down { fill: var(--down); }
+footer { margin-top: 32px; }
